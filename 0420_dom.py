@@ -33,24 +33,18 @@ def rozkład(A):
 
 def a_k(A, k):
     if A.shape[0] != A.shape[1]:
-        raise 'Macierze nie jest kwadratowa.'
+        raise 'Macierz nie jest kwadratowa.'
     matrix = copy.deepcopy(A)
     for i in range(k):
         Q, R = rozkład(matrix)
         matrix = np.linalg.inv(Q) @ matrix @ Q
     return matrix
 
-np.set_printoptions(suppress=True)
 A = np.array([
     [1, 1, 1],
     [1, 0, 0],
     [1, 0, 1],
 ])
-# A = np.array([
-#     [1,0],
-#     [1,1],
-#     [0,1],
-# ])
 
 Q, R = rozkład(A)
 print(a_k(A, 2))
